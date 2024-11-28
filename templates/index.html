@@ -21,8 +21,13 @@
                 <input type="text" class="m-2 rounded-3" name="link" id="linkid">
                 <button type="submit" class="btn btn-primary">Iniciar</button>
             </form>
-            
-
+            <br>
+                <ul>
+                    {% for link in rows %}
+                    <li><a href="https://pi-3okz.onrender.com/link/{{link[0]}}">https://pi-3okz.onrender.com/link/{{link[0]}}</a></li>
+                    {% endfor %}
+                </ul>
+            <br>
             <p class="m-2">Mira este ejemplo: <a href="/never"> https://pi-3okz.onrender.com/link/0</a></p>
         </div></center>
     </div></center>

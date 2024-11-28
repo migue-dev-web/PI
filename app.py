@@ -39,12 +39,22 @@ def create_DB():
 
     return  
 
+def getAll():
+    con = conn()
+    cursor = con.cursor()
+    cursor.execute("SELECT * FROM links")
+    rows = cursor.fetchall()
+    return rows
 
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    
+
+
     if request.method == 'POST':
         link = request.form.get('link')
+        rows = getAll()
         try:
             con = conn()
             cursor = con.cursor()
@@ -60,7 +70,7 @@ def home():
             print(link_id)
             return render_template("newcut.html", link_id=link_id)
 
-    return render_template("index.html")
+    return render_template("index.html", rows = rows)
 
 @app.route('/link/<int:idL>')
 def links(idL):
