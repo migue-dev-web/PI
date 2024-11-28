@@ -58,6 +58,8 @@ def home():
             cursor.close()
             con.close()
             return render_template("newcut.html", link_id=link_id)
+    
+    return render_template("newcut.html")
 
 @app.route('/link/<int:idL>')
 def links(idL):
