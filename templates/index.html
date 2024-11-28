@@ -11,7 +11,7 @@
     
     <center><h1 class="my-3">Social Shortcut</h1></center>
     <br>
-    <center><div class="container shadow-sm rounded-3 my-3 w-50 p-2" style="height: 50vh; display: flex;  justify-content: center; flex-direction: column; background-color: white;" >
+    <center><div class="container shadow-sm rounded-3 my-3 w-50 p-2" style="height: 70vh; display: flex;  justify-content: center; flex-direction: column; background-color: white;" >
         <p class="m-2 fs-3">Bienvenido!</p>
         <center><div >
             <form class="m-2 p-4 " action="" method="POST" style="display: flex; align-items: center;  flex-direction: column;">
@@ -22,7 +22,7 @@
                 <button type="submit" class="btn btn-primary">Iniciar</button>
             </form>
             <br>
-                <ul class="list-group">
+                <ul class="list-group list-group-flush">
                     {% for link in rows %}
                     <li class="list-group-item"><a href="https://pi-3okz.onrender.com/link/{{link[0]}}">https://pi-3okz.onrender.com/link/{{link[0]}}</a></li>
                     {% endfor %}
