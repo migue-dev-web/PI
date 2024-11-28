@@ -46,19 +46,18 @@ def home():
     create_DB()  # crea la tabla en caso de que no exista
     return render_template("index.html")
 
-@app.route('/newLink', methods=['GET, POST'])
-def addLink():
-    if request.method == 'POST':
-        con = conn()
-        cursor = con.cursor()
-        link = request.form['link']
-        query = "INSERT INTO links (link) VALUES (%s) RETURNING id"
-        cursor.execute(query, (link))
-        nuevo_id = cursor.fetchone()[0]
-        con.commit()
-        cursor.close()
-        con.close() 
-    return  redirect(url_for('/newcut/' + nuevo_id)) 
+@app.route('/newLink/?link=<str:link>')
+def addLink(link):
+    
+    con = conn()
+    cursor = con.cursor()
+    query = "INSERT INTO links (link) VALUES (%s) RETURNING id"
+    cursor.execute(query, (link))
+    nuevo_id = cursor.fetchone()[0]
+    con.commit()
+    cursor.close()
+    con.close() 
+    return redirect(url_for('/newcut/'+ nuevo_id))
 
 @app.route('/newcut/<int:id>')
 def newCut(id):
