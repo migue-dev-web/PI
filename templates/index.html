@@ -22,9 +22,9 @@
                 <button type="submit" class="btn btn-primary">Iniciar</button>
             </form>
             <br>
-                <ul>
+                <ul class="list-group">
                     {% for link in rows %}
-                    <li><a href="https://pi-3okz.onrender.com/link/{{link[0]}}">https://pi-3okz.onrender.com/link/{{link[0]}}</a></li>
+                    <li class="list-group-item"><a href="https://pi-3okz.onrender.com/link/{{link[0]}}">https://pi-3okz.onrender.com/link/{{link[0]}}</a></li>
                     {% endfor %}
                 </ul>
             <br>
