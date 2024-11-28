@@ -49,7 +49,7 @@ def home():
             con = conn()
             cursor = con.cursor()
             cursor.execute("INSERT INTO links (link) VALUES (%s) RETURNING id ", (link,))
-            link_id = cursor.fetchone()
+            link_id = cursor.fetchone()[0]
             con.commit()
             print("Link agregado correctamente.")
         except Exception as e:
@@ -68,7 +68,7 @@ def links(idL):
         con = conn()
         cursor = con.cursor()
         cursor.execute("SELECT link FROM links WHERE id = %s", (idL,))
-        cutl = cursor.fetchone()
+        cutl = cursor.fetchone()[0]
     except Exception as e:
         print(f"Error al conectar con la base de datos: {e}")
     finally:
