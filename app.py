@@ -44,7 +44,7 @@ def create_DB():
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        link = request.form('link')
+        link = request.form.get('link')
         try:
             con = conn()
             cursor = con.cursor()
