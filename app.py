@@ -46,7 +46,7 @@ def create_DB():
 def home():
     con = conn()
     cursor = con.cursor()
-    cursor.execute("SELECT TOP 5 * FROM links ORDER BY id DESC")
+    cursor.execute("SELECT * FROM links ORDER BY id DESC LIMIT 5")
     rows = cursor.fetchall()
 
 
