@@ -43,38 +43,35 @@ def create_DB():
 
 @app.route('/')
 def home():
-    create_DB()  # crea la tabla en caso de que no exista
-    return render_template("index.html")
+    if request.method == 'POST':
+        link = request.form('link')
+        try:
+            con = conn()
+            cursor = con.cursor()
+            cursor.execute("INSERT INTO links (link) VALUES (%s) RETURNING id ", (link,))
+            link_id = cursor.fetchone()['id']
+            con.commit()
+            print("Link agregado correctamente.")
+        except Exception as e:
+            print(f"Error al agregar el link: {e}")
+        finally:
+            cursor.close()
+            con.close()
+    return render_template("index.html", link_id=link_id)
 
-@app.route('/newLink/?link=<string:link>')
-def addLink(link):
-    
-    con = conn()
-    cursor = con.cursor()
-    query = "INSERT INTO links (link) VALUES (%s) RETURNING id"
-    cursor.execute(query, (link))
-    nuevo_id = cursor.fetchone()[0]
-    con.commit()
-    cursor.close()
-    con.close() 
-    return redirect(url_for('/newcut/'+ nuevo_id))
-
-@app.route('/newcut/<int:id>')
-def newCut(id):
-    render_template("newcut.html", id=id)
-    return
-
-   
-
-
-  
-
-@app.route('/link/<int:id>')
-def viewLink(id):
-   render_template("redir.html", id=id) #link = li
-   return
-
-
+@app.route('/link/<int:idL>')
+def links(idL):
+    try:
+        con = conn()
+        cursor = con.cursor()
+        cursor.execute("SELECT link FROM links WHERE id = %s", (idL,))
+        cutl = cursor.fetchone()
+    except Exception as e:
+        print(f"Error al conectar con la base de datos: {e}")
+    finally:
+        cursor.close()
+        con.close()
+    return render_template("redir.html", cutl=cutl )
 
 @app.route('/never')
 def never():
