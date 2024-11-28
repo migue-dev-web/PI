@@ -46,7 +46,7 @@ def home():
     create_DB()  # crea la tabla en caso de que no exista
     return render_template("index.html")
 
-@app.route('/newLink/?link=<str:link>')
+@app.route('/newLink/?link=<string:link>')
 def addLink(link):
     
     con = conn()
