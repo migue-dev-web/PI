@@ -39,22 +39,20 @@ def create_DB():
 
     return  
 
-def getAll():
-    con = conn()
-    cursor = con.cursor()
-    cursor.execute("SELECT * FROM links")
-    rows = cursor.fetchall()
-    return rows
+
 
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    
+    con = conn()
+    cursor = con.cursor()
+    cursor.execute("SELECT * FROM links")
+    rows = cursor.fetchall()
 
 
     if request.method == 'POST':
         link = request.form.get('link')
-        rows = getAll()
+        
         try:
             con = conn()
             cursor = con.cursor()
