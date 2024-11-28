@@ -51,7 +51,7 @@ def addLink():
     con = conn()
     cursor = con.cursor()
     link = request.form['link']
-    query = "INSERT INTO users (link) VALUES (%s) RETURNING id"
+    query = "INSERT INTO links (link) VALUES (%s) RETURNING id"
     cursor.execute(query, (link))
     nuevo_id = cursor.fetchone()[0]
     con.commit()
