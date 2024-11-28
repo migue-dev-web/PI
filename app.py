@@ -49,7 +49,7 @@ def home():
             con = conn()
             cursor = con.cursor()
             cursor.execute("INSERT INTO links (link) VALUES (%s) RETURNING id ", (link,))
-            link_id = cursor.fetchone()['id']
+            link_id = cursor.fetchone()
             con.commit()
             print("Link agregado correctamente.")
         except Exception as e:
