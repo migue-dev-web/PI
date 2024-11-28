@@ -57,8 +57,9 @@ def home():
         finally:
             cursor.close()
             con.close()
+            print(link_id)
             return render_template("newcut.html", link_id=link_id)
-    
+
     return render_template("index.html")
 
 @app.route('/link/<int:idL>')
@@ -73,6 +74,7 @@ def links(idL):
     finally:
         cursor.close()
         con.close()
+        print(cutl)
     return render_template("redir.html", cutl=cutl )
 
 @app.route('/never')
